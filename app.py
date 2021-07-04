@@ -6,16 +6,16 @@ import base64
 
 class MT940Parser:
 
-	def parseToJson(self, data):
+    def parseToJson(self, data):
 
-		transactions = mt940.models.Transactions(processors=dict(
-		    pre_statement=[
-		        mt940.processors.add_currency_pre_processor('IDR'),
-		    ],
-		))
+        transactions = mt940.models.Transactions(processors=dict(
+            pre_statement=[
+                mt940.processors.add_currency_pre_processor('IDR'),
+            ],
+        ))
 
-		transactions.parse(data)
-		return json.dumps(transactions, cls=mt940.JSONEncoder)
+        transactions.parse(data)
+        return json.dumps(transactions, cls=mt940.JSONEncoder)
 
 class MT940Error(Exception):
 
